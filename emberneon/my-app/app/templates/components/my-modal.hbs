@@ -1,0 +1,10 @@
+<div class="modal">    
+     <div class="head-popup green-header">
+	<span class="project-name">--{{appName}}</span> <span class="close-popup" {{action 'removeModal'}}>x</span>
+      </div>
+      <div class="modal-body">
+	{{#each data in DataValue}}
+		<span class="appname">{{data.appName}}</span>	
+        {{/each}}
+      </div>    
+</div>

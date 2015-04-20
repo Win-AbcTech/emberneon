@@ -1,0 +1,123 @@
+@import 'ember-paper';
+
+$bodycolor: #2a353d;
+$appGreen: linear-gradient(to bottom, #d8fff9 0%, #b7f9f0 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+$appGreenBorder: 1px solid #1fbca5;
+$appFont: 30px;
+$appFontColor: #000;
+$appRed: linear-gradient(to bottom, #ffcacc 0%, #f7aaae 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+$appRedBorder: 1px solid #ff969a;
+$appYellow: linear-gradient(to bottom, #ffe9a5 0%, #f2d887 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+$appYellowBorder: 1px solid #ffbc5c;
+
+html, body{
+	background:$bodycolor;
+}
+
+.container{
+ 	position: relative;
+	margin: 10px 20px 0;	
+}
+#heading{
+    background: none repeat scroll 0 0 #465866;
+    box-shadow: 0 0 5px 0 #000000;
+    height: 40px;
+    margin: 0;
+    padding: 10px;
+    width: 100%;
+    z-index: 999;
+}
+#heading span{
+    color: #fff;
+    font-size: 20px;
+    padding-left: 20px;
+}
+md-card{
+	display: inline-block;
+	float:left;
+ 	position: relative;
+	width: 100%;
+        margin: 0;
+	box-shadow:none;
+}
+md-card .grid{
+ 	float: left;
+    	height: 45px;
+    	margin-bottom: 13px;
+    	padding: 0 2.5px;
+    	width: 16.6667%;
+	cursor: pointer;
+}
+md-card md-card-content{
+	border-radius: 3px;
+    	height: auto;
+    	line-height: 120%;
+    	overflow: hidden;
+    	padding: 12px 5px;
+    	text-align: center;
+    	width: 100%;	
+	float: left;
+    	position: relative;
+	display: block;
+}
+
+md-card .green md-card-content{
+	background: $appGreen;
+	border: $appGreenBorder;  
+}
+md-card .red md-card-content{
+	background: $appRed;
+	border: $appRedBorder;  
+}
+md-card .yellow md-card-content{
+	background: $appYellow;
+	border: $appYellowBorder;  
+}
+md-card md-card-content .appname{	      
+	font-size: $appFont;
+	color: $appFontColor;
+}
+
+.modal{
+	background: none repeat scroll 0 0 #ffffff;
+    box-shadow: 0 0 5px 0 #000000;
+    color: #555555;
+    display: none;
+    font-family: "Arial";
+    font-size: 24px;
+    left: 50%;
+    margin: 0 0 0 -500px;
+    max-height: 70%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    padding: 0;
+    position: fixed;
+    top: 15%;
+    width: 1000px;
+    z-index: 1001;
+}
+.head-popup{
+    color: #000000;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 5px 10px;
+    width: 100%;
+}
+
+.head-popup.green-header{
+	background: $appGreen;
+	border: $appGreenBorder;  
+}
+
+.close-popup{
+	cursor: pointer;
+}
+.overlay {
+	  height: 100%;
+	  width: 100%;
+	  position: fixed;
+	  top: 0;
+	  left: 0;
+	  background-color: rgba(0, 0, 0, 0.2);
+}
+

@@ -1,0 +1,69 @@
+import Ember from 'ember';
+
+export default Ember.Controller.extend({
+    preData: [],
+    getAllAppServersStatus: [],
+    actions: {         
+        onopen: function(e) {
+           console.log('On open called: ' + e.target.url);          
+        },
+        onmessage: function(e) {
+           console.log('On message called: ' + e.target.url);          
+           var JSONData = JSON.parse(e.data); 	           
+           if(this.preData.length <= 0) {this.preData = JSONData.message.appStatus;}
+	   //console.log(JSONData);    
+	   //console.log(JSONData.message.appStatus);   
+	   if(JSONData.operation === "app_status_new")
+           {       
+           	this.preData = JSONData.message.appStatus;
+           }
+           else if(JSONData.operation === "app_status_update")
+	   {
+		var updateData = JSONData.message.appStatus;
+   		for(var i=0;i<this.preData.length;i++){
+                       for(var j=0;j<updateData.length;j++){
+                           if(this.preData[i].appName===updateData[j].appName){
+                               //replace new updates to neondata
+                               for(var k=0;k<this.preData[i].appStatusServers.length;k++){
+                                  for(var l=0;l<updateData[j].appStatusServers.length;l++){
+                                      if(this.preData[i].appStatusServers[k].serverName===updateData[j].appStatusServers[l].serverName){
+                                          //here it is.. replace the updated server
+                                          this.preData[i].appStatusServers[k]=updateData[j].appStatusServers[l];
+                                      }
+                                  }
+                               }
+                           }
+                       }
+                   }
+                
+	   } 	   
+          
+	   for(var i=0;i<this.preData.length;i++){
+		    if(typeof this.preData[i].healthStatus === "undefined") {this.preData[i].healthStatus = 'healthy';}
+		    if(typeof this.preData[i].colorStatus === "undefined") {this.preData[i].colorStatus = 'green';}             
+		    for(var j=0;j<this.preData[i].appStatusServers.length;j++){
+		        if(this.preData[i].appStatusServers[j].status==="Still sick"){
+		            this.preData[i].healthStatus = 'sick';
+			    if(typeof this.preData[i].colorStatus !== "undefined") {this.preData[i].colorStatus = 'yellow';}		            
+		        }
+		        if((this.preData[i].appStatusServers[j].status==="Still healthy" ||this.preData[i].appStatusServers[j].status==="Back healthy") && this.preData[i].appStatusServers[j].flaky){
+		            this.preData[i].healthStatus = 'flaky';   
+                            if(typeof this.preData[i].colorStatus !== "undefined") {this.preData[i].colorStatus = 'red';}                         
+		        }
+		    }                 
+               
+            }           
+ 		
+             this.set("DataValue", this.preData);
+          
+        },
+        onclose: function(e) {
+           console.log('On close called: ' + e.target.url);
+          
+        },
+        onerror: function(e) {
+            console.log('On error called: ' + e.target.url);
+           
+        }
+    }
+});

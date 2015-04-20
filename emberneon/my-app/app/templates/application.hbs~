@@ -1,0 +1,20 @@
+<header>
+	<div id="heading">
+		<span>Welcome to Ember.js</span>
+	</div>
+</header>
+<div class="container">
+	{{#paper-card}}		
+		{{#each data in DataValue}}
+		   <div class="grid {{data.colorStatus}}" {{action 'showModal' 'components/my-modal' model data.appName}}>			
+			{{#paper-card-content}}
+				<span class="appname">{{data.appName}}</span>								
+			{{/paper-card-content}}			
+		   </div>
+		{{/each}}		
+	{{/paper-card}}
+	{{outlet}}
+	{{outlet 'modal'}}
+</div>
+
+

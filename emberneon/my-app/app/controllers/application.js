@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
     preData: [],
-    getAllAppServersStatus: [],
+    getAllAppServersStatus: [],   
     actions: {         
         onopen: function(e) {
            console.log('On open called: ' + e.target.url);          
@@ -44,11 +44,11 @@ export default Ember.Controller.extend({
 		    for(var y=0;y<this.preData[x].appStatusServers.length;y++){
 		        if(this.preData[x].appStatusServers[y].status==="Still sick"){
 		            this.preData[x].healthStatus = 'sick';
-			    if(typeof this.preData[x].colorStatus !== "undefined") {this.preData[x].colorStatus = 'yellow';}		            
+			    if(typeof this.preData[x].colorStatus !== "undefined") {this.preData[x].colorStatus = 'red';}		            
 		        }
 		        if((this.preData[x].appStatusServers[y].status==="Still healthy" ||this.preData[x].appStatusServers[y].status==="Back healthy") && this.preData[x].appStatusServers[y].flaky){
 		            this.preData[x].healthStatus = 'flaky';   
-                            if(typeof this.preData[x].colorStatus !== "undefined") {this.preData[x].colorStatus = 'red';}                         
+                            if(typeof this.preData[x].colorStatus !== "undefined") {this.preData[x].colorStatus = 'yellow';}                         
 		        }
 		    }                 
                

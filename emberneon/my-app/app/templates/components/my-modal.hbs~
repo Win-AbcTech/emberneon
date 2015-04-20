@@ -1,12 +1,28 @@
-<div class="modal">  
-    <div class="modal-content">
+<div class="overlay" {{action 'removeModal'}}></div>
+<div class="modal">     
      <div class="head-popup green-header">
-	<span class="project-name">--{{appName}}</span> <span class="close-popup" {{action 'removeModal'}}>x</span>
+	<span class="project-name">{{selectedappName}}</span> <span class="close-popup" {{action 'removeModal'}}>x</span>
       </div>
-      <div class="modal-body">
-	{{#each data in DataValue}}
-		<span class="appname">{{data.appName}}</span>	
-        {{/each}}
-      </div>
-    </div>  
+      <div class="body-popup">
+	<table>
+		<thead>
+			<tr>
+				<th>Server</th>
+				<th>Version</th>
+				<th>Branch</th>
+                		<th>Status</th>
+			</tr>
+		</thead>
+		<tbody class="body">
+			{{#each data in serverStatusList}}	
+				<tr>
+					<td><span></span>{{data.serverName}}</td>
+					<td>{{data.version}}</td>
+					<td>{{data.appVersion}}</td>
+					<td>{{data.errorCode}}</td>
+				</tr>		
+        		{{/each}}
+		</tbody>
+	</table>
+      </div>    
 </div>

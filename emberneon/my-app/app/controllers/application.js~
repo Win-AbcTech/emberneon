@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
     preData: [],
-    getAllAppServersStatus: [],
+    getAllAppServersStatus: [],   
     actions: {         
         onopen: function(e) {
            console.log('On open called: ' + e.target.url);          
@@ -38,17 +38,17 @@ export default Ember.Controller.extend({
                 
 	   } 	   
           
-	   for(var i=0;i<this.preData.length;i++){
-		    if(typeof this.preData[i].healthStatus === "undefined") {this.preData[i].healthStatus = 'healthy';}
-		    if(typeof this.preData[i].colorStatus === "undefined") {this.preData[i].colorStatus = 'green';}             
-		    for(var j=0;j<this.preData[i].appStatusServers.length;j++){
-		        if(this.preData[i].appStatusServers[j].status==="Still sick"){
-		            this.preData[i].healthStatus = 'sick';
-			    if(typeof this.preData[i].colorStatus !== "undefined") {this.preData[i].colorStatus = 'yellow';}		            
+	   for(var x=0;x<this.preData.length;x++){
+		    if(typeof this.preData[x].healthStatus === "undefined") {this.preData[x].healthStatus = 'healthy';}
+		    if(typeof this.preData[x].colorStatus === "undefined") {this.preData[x].colorStatus = 'green';}             
+		    for(var y=0;y<this.preData[x].appStatusServers.length;y++){
+		        if(this.preData[x].appStatusServers[y].status==="Still sick"){
+		            this.preData[x].healthStatus = 'sick';
+			    if(typeof this.preData[x].colorStatus !== "undefined") {this.preData[x].colorStatus = 'yellow';}		            
 		        }
-		        if((this.preData[i].appStatusServers[j].status==="Still healthy" ||this.preData[i].appStatusServers[j].status==="Back healthy") && this.preData[i].appStatusServers[j].flaky){
-		            this.preData[i].healthStatus = 'flaky';   
-                            if(typeof this.preData[i].colorStatus !== "undefined") {this.preData[i].colorStatus = 'red';}                         
+		        if((this.preData[x].appStatusServers[y].status==="Still healthy" ||this.preData[x].appStatusServers[y].status==="Back healthy") && this.preData[x].appStatusServers[y].flaky){
+		            this.preData[x].healthStatus = 'flaky';   
+                            if(typeof this.preData[x].colorStatus !== "undefined") {this.preData[x].colorStatus = 'red';}                         
 		        }
 		    }                 
                

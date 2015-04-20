@@ -6,7 +6,7 @@
 <div class="container">
 	{{#paper-card}}		
 		{{#each data in DataValue}}
-		   <div class="grid {{data.colorStatus}}" {{action 'showModal' 'components/my-modal' data.appName}}>			
+		   <div class="grid {{data.colorStatus}}" {{action 'showModal' 'components/my-modal' data.appName data}}>			
 			{{#paper-card-content}}
 				<span class="appname">{{data.appName}}</span>								
 			{{/paper-card-content}}			

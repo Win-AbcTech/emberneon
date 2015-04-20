@@ -108,8 +108,62 @@ md-card md-card-content .appname{
 	border: $appGreenBorder;  
 }
 
-.close-popup{
-	cursor: pointer;
+.body-popup {
+    background: none repeat scroll 0 0 #ffffff;
+    border: 1px solid #dddddd;
+    padding: 5px 5px 10px;
+    width: 100%;
+}
+
+.body-popup table {
+    padding: 5px;
+    width: 100%;
+}
+
+.body-popup table thead th {
+    border-bottom: 1px solid #eeeeee;
+    color: #808080;
+    font-style: italic;
+    font-weight: normal;
+    padding: 2px 7px;
+    text-align: left;
+}
+
+.body-popup table thead th:first-child {
+    min-width: 200px;
+}
+
+.body-popup table tbody td {
+    border-bottom: 1px dotted #eeeeee;
+    padding: 2px 7px;
+}
+
+.body-popup table tbody td:first-child {
+    font-weight: bold;
+    min-width: 200px;
+}
+
+.body-popup table tbody tr td:first-child span {
+    background: none repeat scroll 0 0 #1dbba4;
+    float: left;
+    height: 15px;
+    margin-right: 10px;
+    margin-top: 7px;
+    width: 15px;
+}
+
+.close-popup {
+    background: none repeat scroll 0 0 #000000;
+    border-radius: 3px;
+    color: #ffffff;
+    cursor: pointer;
+    font-family: "Arial";
+    font-size: 12px;
+    opacity: 1;
+    padding: 1px 5px 3px;
+    position: absolute;
+    right: 10px;
+    top: 12px;
 }
 .overlay {
 	  height: 100%;

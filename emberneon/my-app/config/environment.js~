@@ -9,10 +9,11 @@ module.exports = function(environment) {
     contentSecurityPolicy : {
 	  'default-src': "'none'",
 	  'script-src': "'self'",
-	  'font-src': "'self' http://fonts.gstatic.com",
+	  'font-src': "'self' https://fonts.gstatic.com",
 	  'connect-src': "'self'",
 	  'img-src': "'self'",
-	  'media-src': "'self'"
+	  'media-src': "'self'",
+          'style-src': "'self' 'unsafe-inline' fonts.googleapis.com"
     },
     EmberENV: {
       FEATURES: {
@@ -50,6 +51,15 @@ module.exports = function(environment) {
   if (environment === 'production') {
 
   }
+
+  ENV.contentSecurityPolicy = {
+	  'default-src': "'none' ",
+	  'script-src': "'self'",
+	  'font-src': "'self' https://fonts.gstatic.com",
+	  'connect-src': "'self' ws://admin.api.no/api/neon/v1/ws",
+	  'img-src': "'self' http://admin.api.no/neon/client/images/",
+	  'media-src': "'self'"
+	}
 
 
   return ENV;

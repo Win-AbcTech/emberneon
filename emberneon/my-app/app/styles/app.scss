@@ -103,9 +103,19 @@ md-card md-card-content .appname{
     width: 100%;
 }
 
-.head-popup.green-header{
+.head-popup.green{
 	background: $appGreen;
 	border: $appGreenBorder;  
+}
+
+.head-popup.red{
+	background: $appRed;
+	border: $appRedBorder;  
+}
+
+.head-popup.yellow{
+	background: $appYellow;
+	border: $appYellowBorder;  
 }
 
 .body-popup {
@@ -152,6 +162,22 @@ md-card md-card-content .appname{
     width: 15px;
 }
 
+.body-popup table tbody tr td:first-child span.red{
+    background:none repeat scroll 0 0 #ff6061;
+}
+
+.body-popup table tbody tr td:first-child span.yellow{
+    background:none repeat scroll 0 0 #febd01;
+}
+
+.body-popup table tbody tr.red {
+    color: #770001;
+   background: none repeat scroll 0 0 #ffeded;
+}
+.body-popup table tbody tr.yellow {
+    background: none repeat scroll 0 0 #fff7de;
+    color: #cf4e00;
+}
 .close-popup {
     background: none repeat scroll 0 0 #000000;
     border-radius: 3px;
@@ -173,4 +199,139 @@ md-card md-card-content .appname{
 	  left: 0;
 	  background-color: rgba(0, 0, 0, 0.2);
 }
+.line-container{
+	position: relative;
+}
+.line-dot {
+    border-bottom: 1px dotted #999999;
+    float: left;
+    margin-bottom: 15px;
+    margin-top: 18px;
+    position: relative;
+    width: 100%;
+}
+.line-dot::before, .line-dot::after {
+    clear: both;
+}
+.line-dot .line-heading {
+    color: #cccccc;
+    text-align: center;
+}
+
+.line-dot .line-heading img {
+    margin-right: 5px;
+    vertical-align: middle;
+}
+.line-dot .line-heading span {
+    text-shadow: 0 2px 2px #000000;
+}
+
+.line-dot .line-heading {
+    background: none repeat scroll 0 0 #2a353d;
+    color: #cccccc;
+    left: 50%;
+    margin-left: -100px;
+    margin-top: -12px;
+    position: absolute;
+    text-align: center;
+    width: 200px;
+}
+
+.line-mode {
+    background: none repeat scroll 0 0 white;
+    position: relative;
+}
+
+.line-mode .line-row {
+    float: left;
+    margin-bottom: 5px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    cursor:pointer;
+}
+
+.line-mode .line-row:last-child {
+    margin-bottom: 0;
+}
+
+.line-mode::before, .line-mode::after {
+    clear: both;
+}
+
+.line-mode .line-row .app-name-box {
+    border-radius: 3px 0 0 3px;
+    float: left;
+    height: 70px;
+    margin: 0 auto;
+    padding: 10px 5px;
+    text-align: center;
+    width: 16.6667%;
+}
+
+.line-mode .line-row .app-name-box.red {
+  	background: $appRed;
+	border: $appRedBorder;  
+}
+
+.line-mode .line-row .app-name-box.yellow {
+  	background: $appYellow;
+	border: $appYellowBorder;  
+}
+
+.line-mode .line-row .app-name {
+    color: #000000;
+    font-size: 36px;
+    font-weight: normal;
+    text-align: center;
+}
+.line-mode .server-box {
+    background: linear-gradient(to bottom, #ffffff 0%, #eeeeee 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border: 1px solid #c0c0c0;
+    border-radius: 0 3px 3px 0;
+    float: left;
+    height: 70px;
+    line-height: 120%;
+    padding-bottom: 7px;
+    padding-top: 7px;
+    width: 83.3333%;
+}
+.line-mode .server-box .server-list-box {
+    border-right: 1px dotted #aaaaaa;
+    float: left;
+    font-size: 30px;
+    height: 100%;
+    line-height: 130%;
+    overflow: hidden;
+    padding-left: 10px;
+    padding-right: 5px;
+    position: relative;
+    width: 12.5%;
+}
+.line-mode .server-box .server-list-box:last-child {
+    border: 0 none;
+}
+.line-mode .server-box .server-list-box .server-name {
+    color: #333333;
+    display: block;
+    font-weight: bold;
+    margin-top: -8px;
+    overflow: hidden;
+}
+.line-mode .server-box .server-list-box .server-version {
+    color: #666666;
+    display: block;
+    font-size: 27px;
+    margin-top: -13px;
+}
+.line-mode .server-box .red.server-list-box span{
+    color: #bf0000;
+    background:none;
+}
+.line-mode .server-box .yellow.server-list-box span {
+    color: #e87005;
+    background:none;
+}
+
+
 

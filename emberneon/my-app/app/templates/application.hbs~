@@ -4,9 +4,43 @@
 	</div>
 </header>
 <div class="container">
+	<div class="line-container">
+		<div class="line-dot">
+			<div class="line-heading">
+				<img alt="" src="http://admin.api.no/neon/client/images/icon-thumbup.png"> 
+				<span>IRREGULAR STATUS</span>
+			</div>
+		</div>
+	</div>
+	<div class="line-mode mix-line">		
+		{{#each irdata in irregularDataValue}}
+		   <div class="line-row more-info" {{action 'showModal' 'components/my-modal' irdata.appName irdata irdata.colorStatus}}>
+			   <div class="line-mode">
+				<div class="app-name-box {{irdata.colorStatus}}">
+					<span class="app-name">{{irdata.appName}}</span>	
+				</div>
+			  	<div class="server-box">
+					{{#each irserverdata in irdata.appStatusServers}}
+						<div class="server-list-box {{irserverdata.colorStatus}}">
+							<span class="server-name">{{irserverdata.serverName}}</span> 					
+						</div>
+					{{/each}}
+				</div>			
+			   </div>
+		   </div>
+		{{/each}}		
+	</div>
+	<div class="line-container">
+		<div class="line-dot">
+			<div class="line-heading">
+				<img alt="" src="http://admin.api.no/neon/client/images/icon-thumbdown.png"> 
+				<span>REGULAR STATUS</span>
+			</div>
+		</div>
+	</div>
 	{{#paper-card}}		
-		{{#each data in DataValue}}
-		   <div class="grid {{data.colorStatus}}" {{action 'showModal' 'components/my-modal' data.appName}}>			
+		{{#each data in regularDataValue}}
+		   <div class="grid {{data.colorStatus}}" {{action 'showModal' 'components/my-modal' data.appName data data.colorStatus}}>			
 			{{#paper-card-content}}
 				<span class="appname">{{data.appName}}</span>								
 			{{/paper-card-content}}			

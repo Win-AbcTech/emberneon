@@ -2,6 +2,8 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
     preData: [],
+    regularData: [],
+    irregularData: [],
     getAllAppServersStatus: [],   
     actions: {         
         onopen: function(e) {
@@ -37,23 +39,55 @@ export default Ember.Controller.extend({
                    }
                 
 	   } 	   
-          
+          var reglength = 0;  
+          var irreglength = 0;  
 	   for(var x=0;x<this.preData.length;x++){
-		    if(typeof this.preData[x].healthStatus === "undefined") {this.preData[x].healthStatus = 'healthy';}
-		    if(typeof this.preData[x].colorStatus === "undefined") {this.preData[x].colorStatus = 'green';}             
-		    for(var y=0;y<this.preData[x].appStatusServers.length;y++){
-		        if(this.preData[x].appStatusServers[y].status==="Still sick"){
-		            this.preData[x].healthStatus = 'sick';
-			    if(typeof this.preData[x].colorStatus !== "undefined") {this.preData[x].colorStatus = 'yellow';}		            
-		        }
-		        if((this.preData[x].appStatusServers[y].status==="Still healthy" ||this.preData[x].appStatusServers[y].status==="Back healthy") && this.preData[x].appStatusServers[y].flaky){
-		            this.preData[x].healthStatus = 'flaky';   
-                            if(typeof this.preData[x].colorStatus !== "undefined") {this.preData[x].colorStatus = 'red';}                         
-		        }
-		    }                 
+		 this.preData[x].healthStatus = 'healthy';	        
+                 Ember.set(this.preData[x], "colorStatus", 'green');    
+		       
+		 for(var y=0;y<this.preData[x].appStatusServers.length;y++){
+		    var versionArray = this.preData[x].appStatusServers[y].appVersion.split(" ");
+		     this.preData[x].appStatusServers[y].version = "";
+                     this.preData[x].appStatusServers[y].branch  = "";
+		    if(versionArray[0] !== ""){
+			 this.preData[x].appStatusServers[y].version = versionArray[0];
+		    }
+		    if(versionArray[1] !== ""){
+			 this.preData[x].appStatusServers[y].branch = versionArray[0];
+		    }
+
+		     if(this.preData[x].appStatusServers[y].status==="Still sick"){
+		         this.preData[x].healthStatus = 'sick';
+			 if(typeof this.preData[x].colorStatus !== "undefined") {				
+				Ember.set(this.preData[x], "colorStatus", 'red'); 
+                                this.preData[x].appStatusServers[y].colorStatus = 'red';
+			 }	
+			         
+		     }
+		     if((this.preData[x].appStatusServers[y].status==="Still healthy" ||this.preData[x].appStatusServers[y].status==="Back healthy") && this.preData[x].appStatusServers[y].flaky){
+		         this.preData[x].healthStatus = 'flaky';   
+                         if(typeof this.preData[x].colorStatus !== "undefined") {
+				Ember.set(this.preData[x], "colorStatus", 'yellow');   
+				this.preData[x].appStatusServers[y].colorStatus = 'yellow';
+			}   
+			                      
+		     }
+			
+		 }     
+		
+		 if(this.preData[x].colorStatus === "green"){
+			this.regularData[reglength] = this.preData[x];
+			reglength++;
+		 }    
+		 else{
+		 	this.irregularData[irreglength] = this.preData[x];	  
+			irreglength++;     
+		 }        
                
             }           
- 		
+ 	     
+	     this.set("regularDataValue", this.regularData);
+	     this.set("irregularDataValue", this.irregularData);
              this.set("DataValue", this.preData);
           
         },

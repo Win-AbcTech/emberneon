@@ -3,16 +3,11 @@ import socketMixin from 'ember-websockets/mixins/sockets';
 
 export default Ember.Route.extend(socketMixin, {
   socketURL: 'ws://admin.api.no/api/neon/v1/ws',
-  keepSocketAlive: false,
+  keepSocketAlive: true,
    actions: {
-    showModal: function(name, appName, data) {   
-      this.controller.set("selectedappName", appName);      
-      for(var i =0; i<data.appStatusServers.length;i++)
-      {
-	var versionArray = data.appStatusServers[i].appVersion.split(" ");	
-	data.appStatusServers[i].version = versionArray[0];
-	data.appStatusServers[i].branch =  versionArray[1];	 
-      }
+    showModal: function(name, appName, data, color) {   
+      this.controller.set("selectedappName", appName);   
+      this.controller.set("selectedappColor", color);      
       console.log(data.appStatusServers);   
       this.controller.set("serverStatusList", data.appStatusServers);       
       this.render(name, {

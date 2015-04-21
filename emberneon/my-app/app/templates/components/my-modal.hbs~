@@ -1,6 +1,6 @@
 <div class="overlay" {{action 'removeModal'}}></div>
 <div class="modal">     
-     <div class="head-popup green-header">
+     <div class="head-popup {{selectedappColor}}">
 	<span class="project-name">{{selectedappName}}</span> <span class="close-popup" {{action 'removeModal'}}>x</span>
       </div>
       <div class="body-popup">
@@ -16,9 +16,9 @@
 		<tbody class="body">
 			{{#each data in serverStatusList}}	
 				<tr>
-					<td><span></span>{{data.serverName}}</td>
+					<td><span class="{{data.colorStatus}}"></span>{{data.serverName}}</td>
 					<td>{{data.version}}</td>
-					<td>{{data.appVersion}}</td>
+					<td>{{data.branch}}</td>
 					<td>{{data.errorCode}}</td>
 				</tr>		
         		{{/each}}
